@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.1/react.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.1/JSXTransformer.js"></script>
+
+</head>
+
+<body>
+<div class="container">
+
+</div>
+
+<script type="text/jsx">
+    var Avatar = React.createClass({
+        getDefaultProps() {
+            return {
+                path: "http://avatarfiles.alphacoders.com/422/42242.png"
+
+            };
+        },
+
+        render: function () {
+            return(
+                    <div>
+                        <img src={this.props.path} />
+                        <Helloworld name={this.props.name} />
+                    </div>
+            )
+        }
+    });
+
+    var Helloworld = React.createClass({
+        getDefaultProps() {
+            return {
+                name: "Super Mario"
+            };
+        },
+
+        render: function () {
+            return (
+                    <h4>{this.props.name}</h4>
+            )
+        }
+
+    });
+
+
+    var ThumbnailList = React.createClass({
+        render: function() {
+            var list = this.props.thumbnailData.map(function(thumbnailProps){
+                return <Avatar {...thumbnailProps} />
+            });
+
+            return <div>
+                {list}
+            </div>
+        }
+    });
+
+
+    var options = {
+        thumbnailData:  [
+            {name: 'Mario',
+                path: "http://avatarfiles.alphacoders.com/265/26511.gif" },
+
+            {name: 'Goku',
+                path: "http://avatarfiles.alphacoders.com/422/42242.png"},
+            {name: 'Batman',
+                path: "http://avatarbox.net/avatars/img40/batman_eyes_avatar_picture_32033.gif" },
+
+            {name: 'Spiderman',
+                path: "http://marvel-faction.forumatic.com/download/file.php?avatar=114_1339988723.jpg"}]
+    };
+
+    var element = React.createElement(ThumbnailList,options);
+
+    React.render(element, document.querySelector('.container'));
+
+
+</script>
+
+</body>
+
+</html>
